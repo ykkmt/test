@@ -1,0 +1,28 @@
+/*var Resampler = require('./resampler');
+var res = new Resampler(44100, 16000);
+var fs =require('fs');
+
+//var input = fs.createReadStream('intest.pcm');
+var input = process.stdin;
+//var output = fs.createWriteStream('outtest.pcm');
+var output = process.stdout;
+
+res.on('end', function (data) {
+	
+});
+input.pipe(res).pipe(output);
+//input.pipe(output);
+*/
+
+var Res = require('./build/Release/resampler');
+var fs =require('fs');
+var obj = Res.Resampler(16000/48000);
+var input = process.stdin;
+//var input = fs.createReadStream('intest.pcm');
+var output = process.stdout;
+//var output = fs.createWriteStream('outtest.pcm');
+
+input.on('data',function(data){
+	output.write(obj.resample(data));
+});
+

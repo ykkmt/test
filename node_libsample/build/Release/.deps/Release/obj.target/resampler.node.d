@@ -1,0 +1,1 @@
+cmd_Release/obj.target/resampler.node := flock ./Release/linker.lock g++ -shared -pthread -rdynamic -m32  -Wl,-soname=resampler.node -o Release/obj.target/resampler.node -Wl,--start-group Release/obj.target/resampler/resampler.o Release/obj.target/resampler/node_resample.o -Wl,--end-group -lsamplerate
